@@ -1,0 +1,22 @@
+import { View, Text, FlatList, StyleSheet } from "react-native";
+import { pizzas } from "../data/arrayPizzas";
+import PizzaCard from "../components/pizzaCard";
+
+export default function Pizzas() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.titulo}>Cardápio de Pizzas</Text>
+
+      <FlatList
+        data={pizzas}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <PizzaCard pizza={item} />}
+      />
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 16, backgroundColor: "#f5f5f5" },
+  titulo: { fontSize: 24, fontWeight: "bold", marginBottom: 16, textAlign: "center" },
+});

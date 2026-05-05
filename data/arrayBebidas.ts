@@ -1,0 +1,73 @@
+export const bebidas = [
+  {
+    id: 0,
+    titulo: "Suco Natural",
+    descricao: "Suco natural gelado",
+    preco: "R$12.90",
+    imagem: require("../assets/images/suco.jpeg"),
+  },
+  {
+    id: 1,
+    titulo: "Água Mineral",
+    descricao: "Água mineral sem gás",
+    preco: "R$5.00",
+    imagem: require("../assets/images/agua.jpeg"),
+  },
+  {
+    id: 2,
+    titulo: "Shake",
+    descricao: "Shake cremoso gelado",
+    preco: "R$18.90",
+    imagem: require("../assets/images/shake.jpeg"),
+  },
+
+  {
+    id: 3,
+    titulo: "Coca-Cola",
+    descricao: "Refrigerante Coca-Cola gelado",
+    preco: "R$8.90",
+    imagem: require("../assets/images/coca.jpg"),
+  },
+  {
+    id: 4,
+    titulo: "Fanta",
+    descricao: "Refrigerante Fanta gelado",
+    preco: "R$8.90",
+    imagem: require("../assets/images/fanta.jpg"),
+  },
+  {
+    id: 5,
+    titulo: "Guaraná",
+    descricao: "Refrigerante Guaraná gelado",
+    preco: "R$8.90",
+    imagem: require("../assets/images/guarana.webp"),
+  },
+  {
+    id: 6,
+    titulo: "Caipi Beats",
+    descricao: "Bebida pronta gelada",
+    preco: "R$12.90",
+    imagem: require("../assets/images/caipibeats.jpeg"),
+  },
+  {
+    id: 7,
+    titulo: "Heineken",
+    descricao: "Cerveja Heineken gelada",
+    preco: "R$12.90",
+    imagem: require("../assets/images/heineken.jpeg"),
+  },
+  {
+    id: 8,
+    titulo: "Toddynho",
+    descricao: "Achocolatado gelado",
+    preco: "R$6.90",
+    imagem: require("../assets/images/toddynho.png"),
+  },
+  {
+    id: 9,
+    titulo: "Stella",
+    descricao: "Cerveja Stella gelada",
+    preco: "R$12.90",
+    imagem: require("../assets/images/stella.jpeg"),
+  },
+];
