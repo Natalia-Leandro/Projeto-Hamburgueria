@@ -10,7 +10,7 @@ export default function BebidaCard({ bebida }: Props) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => router.push(`/bebida/${bebida.id}` as any)}
+      onPress={() => router.push(`/bebidas/${bebida.id}` as any)}
     >
       <View style={styles.info}>
         <Text style={styles.titulo}>{bebida.titulo}</Text>

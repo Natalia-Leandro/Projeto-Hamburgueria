@@ -10,7 +10,7 @@ export default function PizzaCard({ pizza }: Props) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => router.push(`/pizza/${pizza.id}` as any)}
+      onPress={() => router.push(`/pizzas/${pizza.id}` as any)}
     >
       <View style={styles.info}>
         <Text style={styles.titulo}>{pizza.titulo}</Text>

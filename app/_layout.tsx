@@ -2,29 +2,34 @@ import { Stack } from "expo-router";
 
 export default function RootLayout() {
   return (
-    <Stack>
-      
+    <Stack
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "#000",
+        },
+        headerTintColor: "#ff69b4",
+        headerTitleStyle: {
+          fontWeight: "bold",
+        },
+        headerTitleAlign: "center",
+      }}
+    >
       <Stack.Screen name="index" options={{ title: "Tela Inicial" }} />
 
-      
       <Stack.Screen name="lista" options={{ title: "Sanduíches" }} />
-      <Stack.Screen name="produto/[id]" options={{ title: "Detalhe Sanduíche" }} />
+      <Stack.Screen name="produto/[id]" options={{ title: "Detalhes Sanduíche" }} />
 
-      
       <Stack.Screen name="bebidas" options={{ title: "Bebidas" }} />
-      <Stack.Screen name="bebida/[id]" options={{ title: "Detalhe Bebida" }} />
+      <Stack.Screen name="bebidas/[id]" options={{ title: "Detalhes Bebidas" }} />
 
-      
       <Stack.Screen name="pizzas" options={{ title: "Pizzas" }} />
-      <Stack.Screen name="pizza/[id]" options={{ title: "Detalhe Pizza" }} />
+      <Stack.Screen name="pizzas/[id]" options={{ title: "Detalhes Pizzas" }} />
 
-      
       <Stack.Screen name="doces" options={{ title: "Doces" }} />
-      <Stack.Screen name="doce/[id]" options={{ title: "Detalhe Doce" }} />
+      <Stack.Screen name="doces/[id]" options={{ title: "Detalhes Doces" }} />
 
-      
       <Stack.Screen name="outros" options={{ title: "Outros" }} />
-      <Stack.Screen name="outro/[id]" options={{ title: "Detalhe Outros" }} />
+      <Stack.Screen name="outros/[id]" options={{ title: "Detalhes Outros" }} />
     </Stack>
   );
 }

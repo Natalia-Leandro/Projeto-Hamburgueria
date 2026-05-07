@@ -11,51 +11,106 @@ export default function Id() {
 
   return (
     <View style={styles.container}>
-      <Image style={styles.imagem} source={bebida.imagem} resizeMode="cover" />
+      <View style={styles.card}>
+        <Image
+          style={styles.imagem}
+          source={bebida.imagem}
+          resizeMode="cover"
+        />
 
-      <View style={styles.info}>
-        <Text style={styles.nome}>{bebida.titulo}</Text>
-        <Text style={styles.preco}>{bebida.preco}</Text>
-        <Text style={styles.descricao}>{bebida.descricao}</Text>
+        <View style={styles.info}>
+          <Text style={styles.nome}>{bebida.titulo}</Text>
+          <Text style={styles.preco}>{bebida.preco}</Text>
+          <Text style={styles.descricao}>{bebida.descricao}</Text>
 
-        <TouchableOpacity style={styles.botaoComprar}>
-          <Text style={styles.botaoComprarText}>Add Carrinho</Text>
-        </TouchableOpacity>
+          <TouchableOpacity style={styles.botaoComprar}>
+            <Text style={styles.botaoComprarText}>Add Carrinho</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity style={styles.botaoVoltar} onPress={() => router.back()}>
-          <Text style={styles.botaoVoltarText}>Voltar</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.botaoVoltar}
+            onPress={() => router.back()}
+          >
+            <Text style={styles.botaoVoltarText}>Voltar</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#fff" },
-  imagem: { width: "100%", height: 300 },
-  info: { padding: 20, gap: 12 },
-  nome: { fontSize: 24, fontWeight: "bold", color: "#000" },
-  preco: { fontSize: 40, fontWeight: "600", color: "#8e0866" },
-  descricao: { fontSize: 25, lineHeight: 28, color: "#555" },
+  container: {
+    flex: 1,
+    backgroundColor: "#f8abcf",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 24,
+  },
+
+  card: {
+    width: "90%",
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 24,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 30,
+    elevation: 5,
+  },
+
+  imagem: {
+    width: 300,
+    height: 300,
+    borderRadius: 18,
+  },
+
+  info: {
+    flex: 1,
+    gap: 14,
+  },
+
+  nome: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  preco: {
+    fontSize: 38,
+    fontWeight: "bold",
+    color: "#8e0866",
+  },
+
+  descricao: {
+    fontSize: 22,
+    color: "#555",
+  },
+
   botaoComprar: {
     backgroundColor: "#f10b0b",
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: "center",
-    marginTop: 16,
+    marginTop: 12,
   },
+
   botaoComprarText: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#f6f0f0",
+    color: "#fff",
   },
+
   botaoVoltar: {
+    backgroundColor: "#000",
     paddingVertical: 12,
+    borderRadius: 12,
     alignItems: "center",
-    marginTop: 8,
   },
+
   botaoVoltarText: {
-    fontSize: 14,
-    color: "#4d4949",
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#ff69b4",
   },
 });
