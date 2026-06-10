@@ -1,5 +1,17 @@
 import { useEffect, useState } from "react";
-import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+import {
+  adicionarProdutoCarrinho,
+  criarTabelaCarrinho,
+} from "./database/db";
 
 type Promocao = {
   id: string;
@@ -12,6 +24,8 @@ type Promocao = {
 export default function Promocoes() {
   const [promocoes, setPromocoes] = useState<Promocao[]>([]);
   const [loading, setLoading] = useState(true);
+
+  criarTabelaCarrinho();
 
   async function buscarPromocoes() {
     try {
@@ -26,6 +40,16 @@ export default function Promocoes() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function adicionarAoCarrinho(item: Promocao) {
+    adicionarProdutoCarrinho(
+      item.nome,
+      item.preco,
+      `Promoção - ${item.categoria}`
+    );
+
+    alert("Promoção adicionada ao carrinho!");
   }
 
   useEffect(() => {
@@ -54,8 +78,19 @@ export default function Promocoes() {
 
             <View style={styles.info}>
               <Text style={styles.nome}>{item.nome}</Text>
-              <Text style={styles.categoria}>Categoria: {item.categoria}</Text>
+              <Text style={styles.categoria}>
+                Categoria: {item.categoria}
+              </Text>
               <Text style={styles.preco}>{item.preco}</Text>
+
+              <TouchableOpacity
+                style={styles.botaoAdicionar}
+                onPress={() => adicionarAoCarrinho(item)}
+              >
+                <Text style={styles.textoBotao}>
+                  Adicionar ao Carrinho
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         )}
@@ -66,12 +101,43 @@ export default function Promocoes() {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: "#f8abcf", padding: 20 },
-  titulo: { fontSize: 32, fontWeight: "bold", color: "#940346", textAlign: "center", marginBottom: 20 },
-  card: { backgroundColor: "#fff", borderRadius: 20, padding: 16, marginBottom: 18, flexDirection: "row", alignItems: "center" },
+  titulo: {
+    fontSize: 32,
+    fontWeight: "bold",
+    color: "#940346",
+    textAlign: "center",
+    marginBottom: 20,
+  },
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 16,
+    marginBottom: 18,
+    flexDirection: "row",
+    alignItems: "center",
+  },
   imagem: { width: 130, height: 130, borderRadius: 16 },
   info: { flex: 1, marginLeft: 20, gap: 8 },
   nome: { fontSize: 22, fontWeight: "bold", color: "#000" },
   categoria: { fontSize: 16, color: "#555" },
   preco: { fontSize: 24, fontWeight: "bold", color: "#8e0866" },
-  loading: { flex: 1, justifyContent: "center", alignItems: "center", gap: 10 },
+  botaoAdicionar: {
+    backgroundColor: "#940346",
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+    alignItems: "center",
+    marginTop: 8,
+  },
+  textoBotao: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  loading: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+  },
 });
