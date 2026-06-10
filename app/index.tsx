@@ -4,7 +4,6 @@ import { router } from "expo-router";
 export default function Index() {
   return (
     <View style={styles.container}>
-
       <Text style={styles.titulo}>Delícias Express</Text>
 
       <Text style={styles.subtitulo}>
@@ -12,7 +11,6 @@ export default function Index() {
       </Text>
 
       <View style={styles.menu}>
-
         <TouchableOpacity
           style={styles.item}
           onPress={() => router.push("/lista" as any)}
@@ -67,7 +65,26 @@ export default function Index() {
           />
           <Text style={styles.texto}>Outros</Text>
         </TouchableOpacity>
+      </View>
 
+      <View style={styles.areaBotoes}>
+        <TouchableOpacity
+          style={styles.botaoCarrinho}
+          onPress={() => router.push("/carrinho" as any)}
+        >
+          <Text style={styles.textoCarrinho}>
+            🛒 Ver Carrinho
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.botaoPromocoes}
+          onPress={() => router.push("/promocoes" as any)}
+        >
+          <Text style={styles.textoPromocoes}>
+            🔥 Promoções
+          </Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -119,5 +136,37 @@ const styles = StyleSheet.create({
     marginTop: 8,
     fontWeight: "bold",
     fontSize: 20,
+  },
+
+  areaBotoes: {
+    flexDirection: "row",
+    gap: 20,
+    marginTop: 30,
+  },
+
+  botaoCarrinho: {
+    backgroundColor: "#000",
+    paddingVertical: 16,
+    paddingHorizontal: 35,
+    borderRadius: 20,
+  },
+
+  textoCarrinho: {
+    color: "#ff69b4",
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+
+  botaoPromocoes: {
+    backgroundColor: "#940346",
+    paddingVertical: 16,
+    paddingHorizontal: 35,
+    borderRadius: 20,
+  },
+
+  textoPromocoes: {
+    color: "#fff",
+    fontSize: 22,
+    fontWeight: "bold",
   },
 });

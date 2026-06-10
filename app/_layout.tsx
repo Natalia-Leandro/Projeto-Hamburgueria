@@ -19,6 +19,9 @@ export default function RootLayout() {
       <Stack.Screen name="lista" options={{ title: "Sanduíches" }} />
       <Stack.Screen name="produto/[id]" options={{ title: "Detalhes Sanduíche" }} />
 
+      <Stack.Screen name="carrinho" options={{ title: "Carrinho" }} />
+      <Stack.Screen name="promocoes" options={{ title: "Promoções" }} />
+
       <Stack.Screen name="bebidas" options={{ title: "Bebidas" }} />
       <Stack.Screen name="bebidas/[id]" options={{ title: "Detalhes Bebidas" }} />
 

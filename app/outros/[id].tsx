@@ -1,33 +1,72 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import { outros } from "../../data/arrayOutros";
+import {
+  adicionarProdutoCarrinho,
+  criarTabelaCarrinho,
+} from "../database/db";
 
 export default function Id() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const outro = outros.find((p) => p.id === Number(id));
 
-  if (!outro) return <Text>Nao EXISTE ESSE ITEM</Text>;
+  if (!outro) {
+    return <Text>Não existe esse item</Text>;
+  }
+
+  const outroSelecionado = outro;
+
+  criarTabelaCarrinho();
+
+  function adicionarAoCarrinho() {
+    adicionarProdutoCarrinho(
+      outroSelecionado.titulo,
+      outroSelecionado.preco,
+      outroSelecionado.descricao
+    );
+
+    alert("Item adicionado ao carrinho!");
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image style={styles.imagem} source={outro.imagem} resizeMode="cover" />
+        <Image
+          style={styles.imagem}
+          source={outroSelecionado.imagem}
+          resizeMode="cover"
+        />
 
         <View style={styles.info}>
-          <Text style={styles.nome}>{outro.titulo}</Text>
-          <Text style={styles.preco}>{outro.preco}</Text>
-          <Text style={styles.descricao}>{outro.descricao}</Text>
+          <Text style={styles.nome}>
+            {outroSelecionado.titulo}
+          </Text>
 
-          <TouchableOpacity style={styles.botaoComprar}>
-            <Text style={styles.botaoComprarText}>Add Carrinho</Text>
+          <Text style={styles.preco}>
+            {outroSelecionado.preco}
+          </Text>
+
+          <Text style={styles.descricao}>
+            {outroSelecionado.descricao}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.botaoComprar}
+            onPress={adicionarAoCarrinho}
+          >
+            <Text style={styles.botaoComprarText}>
+              Adicionar ao Carrinho
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.botaoVoltar}
             onPress={() => router.back()}
           >
-            <Text style={styles.botaoVoltarText}>Voltar</Text>
+            <Text style={styles.botaoVoltarText}>
+              Voltar
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

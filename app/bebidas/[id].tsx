@@ -1,37 +1,72 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import { bebidas } from "../../data/arrayBebidas";
+import {
+  adicionarProdutoCarrinho,
+  criarTabelaCarrinho,
+} from "../database/db";
 
 export default function Id() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const bebida = bebidas.find((p) => p.id === Number(id));
 
-  if (!bebida) return <Text>Nao EXISTE ESSA BEBIDA</Text>;
+  if (!bebida) {
+    return <Text>Não existe essa bebida</Text>;
+  }
+
+  const bebidaSelecionada = bebida;
+
+  criarTabelaCarrinho();
+
+  function adicionarAoCarrinho() {
+    adicionarProdutoCarrinho(
+      bebidaSelecionada.titulo,
+      bebidaSelecionada.preco,
+      bebidaSelecionada.descricao
+    );
+
+    alert("Bebida adicionada ao carrinho!");
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <Image
           style={styles.imagem}
-          source={bebida.imagem}
+          source={bebidaSelecionada.imagem}
           resizeMode="cover"
         />
 
         <View style={styles.info}>
-          <Text style={styles.nome}>{bebida.titulo}</Text>
-          <Text style={styles.preco}>{bebida.preco}</Text>
-          <Text style={styles.descricao}>{bebida.descricao}</Text>
+          <Text style={styles.nome}>
+            {bebidaSelecionada.titulo}
+          </Text>
 
-          <TouchableOpacity style={styles.botaoComprar}>
-            <Text style={styles.botaoComprarText}>Add Carrinho</Text>
+          <Text style={styles.preco}>
+            {bebidaSelecionada.preco}
+          </Text>
+
+          <Text style={styles.descricao}>
+            {bebidaSelecionada.descricao}
+          </Text>
+
+          <TouchableOpacity
+            style={styles.botaoComprar}
+            onPress={adicionarAoCarrinho}
+          >
+            <Text style={styles.botaoComprarText}>
+              Adicionar ao Carrinho
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.botaoVoltar}
             onPress={() => router.back()}
           >
-            <Text style={styles.botaoVoltarText}>Voltar</Text>
+            <Text style={styles.botaoVoltarText}>
+              Voltar
+            </Text>
           </TouchableOpacity>
         </View>
       </View>

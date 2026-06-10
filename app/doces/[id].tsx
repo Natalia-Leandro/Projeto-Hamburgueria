@@ -1,26 +1,53 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import { useLocalSearchParams, router } from "expo-router";
 import { doces } from "../../data/arrayDoces";
+import {
+  adicionarProdutoCarrinho,
+  criarTabelaCarrinho,
+} from "../database/db";
 
 export default function Id() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const doce = doces.find((p) => p.id === Number(id));
 
-  if (!doce) return <Text>Nao EXISTE ESSE DOCE</Text>;
+  if (!doce) {
+    return <Text>Não existe esse doce</Text>;
+  }
+
+  const doceSelecionado = doce;
+
+  criarTabelaCarrinho();
+
+  function adicionarAoCarrinho() {
+    adicionarProdutoCarrinho(
+      doceSelecionado.titulo,
+      doceSelecionado.preco,
+      doceSelecionado.descricao
+    );
+
+    alert("Doce adicionado ao carrinho!");
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.card}>
-        <Image style={styles.imagem} source={doce.imagem} resizeMode="cover" />
+        <Image
+          style={styles.imagem}
+          source={doceSelecionado.imagem}
+          resizeMode="cover"
+        />
 
         <View style={styles.info}>
-          <Text style={styles.nome}>{doce.titulo}</Text>
-          <Text style={styles.preco}>{doce.preco}</Text>
-          <Text style={styles.descricao}>{doce.descricao}</Text>
+          <Text style={styles.nome}>{doceSelecionado.titulo}</Text>
+          <Text style={styles.preco}>{doceSelecionado.preco}</Text>
+          <Text style={styles.descricao}>{doceSelecionado.descricao}</Text>
 
-          <TouchableOpacity style={styles.botaoComprar}>
-            <Text style={styles.botaoComprarText}>Add Carrinho</Text>
+          <TouchableOpacity
+            style={styles.botaoComprar}
+            onPress={adicionarAoCarrinho}
+          >
+            <Text style={styles.botaoComprarText}>Adicionar ao Carrinho</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -43,7 +70,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 24,
   },
-
   card: {
     width: "90%",
     backgroundColor: "#fff",
@@ -54,35 +80,29 @@ const styles = StyleSheet.create({
     gap: 30,
     elevation: 5,
   },
-
   imagem: {
     width: 300,
     height: 300,
     borderRadius: 18,
   },
-
   info: {
     flex: 1,
     gap: 14,
   },
-
   nome: {
     fontSize: 32,
     fontWeight: "bold",
     color: "#000",
   },
-
   preco: {
     fontSize: 38,
     fontWeight: "bold",
     color: "#8e0866",
   },
-
   descricao: {
     fontSize: 22,
     color: "#555",
   },
-
   botaoComprar: {
     backgroundColor: "#f10b0b",
     paddingVertical: 14,
@@ -90,20 +110,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 12,
   },
-
   botaoComprarText: {
     fontSize: 22,
     fontWeight: "bold",
     color: "#fff",
   },
-
   botaoVoltar: {
     backgroundColor: "#000",
     paddingVertical: 12,
     borderRadius: 12,
     alignItems: "center",
   },
-
   botaoVoltarText: {
     fontSize: 18,
     fontWeight: "bold",
