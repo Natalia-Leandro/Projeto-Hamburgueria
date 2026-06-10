@@ -1,7 +1,24 @@
+import { useEffect, useState } from "react";
 import { View, TouchableOpacity, Image, StyleSheet, Text } from "react-native";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
+import { listarCarrinho } from "./database/db";
 
 export default function Index() {
+  const [quantidadeCarrinho, setQuantidadeCarrinho] = useState(0);
+
+  function carregarQuantidadeCarrinho() {
+    const itens = listarCarrinho();
+    setQuantidadeCarrinho(itens.length);
+  }
+
+  useEffect(() => {
+    carregarQuantidadeCarrinho();
+  }, []);
+
+  useFocusEffect(() => {
+    carregarQuantidadeCarrinho();
+  });
+
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Delícias Express</Text>
@@ -73,7 +90,7 @@ export default function Index() {
           onPress={() => router.push("/carrinho" as any)}
         >
           <Text style={styles.textoCarrinho}>
-            🛒 Ver Carrinho
+            🛒 Ver Carrinho ({quantidadeCarrinho})
           </Text>
         </TouchableOpacity>
 
@@ -81,9 +98,7 @@ export default function Index() {
           style={styles.botaoPromocoes}
           onPress={() => router.push("/promocoes" as any)}
         >
-          <Text style={styles.textoPromocoes}>
-            🔥 Promoções
-          </Text>
+          <Text style={styles.textoPromocoes}>🔥 Promoções</Text>
         </TouchableOpacity>
       </View>
     </View>
