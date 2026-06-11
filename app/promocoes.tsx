@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
   nome: { fontSize: 22, fontWeight: "bold", color: "#000" },
   categoria: { fontSize: 16, color: "#555" },
   preco: { fontSize: 24, fontWeight: "bold", color: "#8e0866" },
-  botaoAdicionar: { backgroundColor: "#940346", paddingVertical: 10, borderRadius: 12, alignItems: "center", marginTop: 8 },
+  botaoAdicionar: {  backgroundColor: "#940346",  paddingVertical: 8, paddingHorizontal: 20, borderRadius: 7,  alignItems: "center", alignSelf: "center",  marginTop: 5, width: 220,},
   textoBotao: { color: "#fff", fontSize: 16, fontWeight: "bold" },
   botaoVoltar: { backgroundColor: "#000", padding: 14, borderRadius: 12, alignItems: "center", marginTop: 10 },
   textoVoltar: { color: "#ff69b4", fontSize: 18, fontWeight: "bold" },
